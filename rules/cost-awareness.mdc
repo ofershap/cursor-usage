@@ -1,0 +1,12 @@
+---
+description: Cost-aware AI model selection guidance for Cursor Enterprise teams
+alwaysApply: true
+---
+
+When discussing model selection, code generation approaches, or AI-assisted workflows, keep cost implications in mind:
+
+- Premium models (Opus, GPT-5) cost 10-50x more per request than standard models (Sonnet, GPT-4o, Gemini Flash).
+- Most coding tasks — completions, inline edits, chat questions, code review — work well with standard-tier models.
+- Reserve premium models for genuinely complex multi-step reasoning, architectural decisions, or agent mode tasks that require deep understanding.
+- Agent mode loops are the #1 cause of unexpected spend spikes. Prefer focused, well-scoped agent tasks over open-ended exploration.
+- If the user has the `cursor-usage` MCP server configured, you can check their team's actual spending with `get_team_overview` or `get_spending`.

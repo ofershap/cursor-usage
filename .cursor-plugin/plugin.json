@@ -1,0 +1,28 @@
+{
+  "name": "cursor-usage",
+  "displayName": "Cursor Usage",
+  "version": "0.1.0",
+  "description": "Query and analyze your Cursor Enterprise team's AI usage, spending, and adoption metrics directly from the IDE. Wraps the full Cursor Admin and Analytics APIs.",
+  "author": {
+    "name": "Ofer Shapira",
+    "email": "ofer@shapira.dev",
+    "url": "https://github.com/ofershap"
+  },
+  "homepage": "https://github.com/ofershap/cursor-usage-tracker",
+  "repository": "https://github.com/ofershap/cursor-usage",
+  "license": "MIT",
+  "keywords": [
+    "cursor",
+    "usage",
+    "spending",
+    "analytics",
+    "enterprise",
+    "admin",
+    "cost",
+    "monitoring",
+    "team",
+    "ai-spend"
+  ],
+  "logo": "assets/logo.svg",
+  "mcpServers": "mcp.json"
+}

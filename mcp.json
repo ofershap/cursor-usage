@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "cursor-usage": {
+      "command": "npx",
+      "args": ["-y", "cursor-usage"],
+      "env": {
+        "CURSOR_API_KEY": "${CURSOR_API_KEY}"
+      }
+    }
+  }
+}

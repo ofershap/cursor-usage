@@ -1,0 +1,73 @@
+{
+  "name": "cursor-usage",
+  "version": "0.1.0",
+  "description": "MCP server and Cursor plugin for querying Cursor Enterprise usage, spending, and analytics",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "cursor-usage": "dist/server.js"
+  },
+  "files": [
+    "dist",
+    "skills",
+    "rules",
+    "commands",
+    "agents",
+    "mcp.json",
+    ".cursor-plugin"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsx src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate": "node scripts/validate.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "cursor",
+    "mcp",
+    "usage",
+    "analytics",
+    "enterprise",
+    "spending",
+    "admin-api",
+    "ai-spend",
+    "model-context-protocol"
+  ],
+  "author": {
+    "name": "Ofer Shapira",
+    "url": "https://github.com/ofershap"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ofershap/cursor-usage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ofershap/cursor-usage/issues"
+  },
+  "homepage": "https://github.com/ofershap/cursor-usage#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.4.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.56.0",
+    "vitest": "^3.0.0"
+  }
+}

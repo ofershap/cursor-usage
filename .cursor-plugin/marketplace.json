@@ -1,0 +1,18 @@
+{
+  "name": "cursor-usage",
+  "owner": {
+    "name": "Ofer Shapira",
+    "email": "ofer@shapira.dev"
+  },
+  "metadata": {
+    "description": "Cursor Enterprise usage tracking and analytics plugin",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "cursor-usage",
+      "source": ".",
+      "description": "Query and analyze your Cursor Enterprise team's AI usage, spending, and adoption metrics directly from the IDE."
+    }
+  ]
+}
