@@ -1,6 +1,6 @@
 {
   "name": "cursor-usage-mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MCP server and Cursor plugin for querying Cursor Enterprise usage, spending, and analytics",
   "type": "module",
   "main": "dist/server.js",
