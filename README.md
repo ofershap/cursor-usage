@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="Cursor Usage" width="100" height="100" />
+  <img src="assets/logo.svg" alt="Cursor Usage - MCP server plugin for Cursor Enterprise API spending and analytics" width="100" height="100" />
 </p>
 
-<h1 align="center">Cursor Usage</h1>
+<h1 align="center">Cursor Usage - Enterprise AI Spend Tracking Plugin</h1>
 
 <p align="center">
-  Ask your AI agent about your team's Cursor spending. Get answers in seconds, not spreadsheets.
+  An MCP server plugin that wraps the Cursor Enterprise API. Ask your AI agent about your team's spending, usage, and model adoption. Get answers in seconds, not spreadsheets.
 </p>
 
 <p align="center">
@@ -34,7 +34,7 @@ You manage a Cursor Enterprise team. You want to know who's spending what, which
 
 > "Give me a full usage report for the current billing cycle."
 
-This plugin gives your agent the tools and knowledge to answer those questions using the Cursor Enterprise API directly.
+This MCP server plugin wraps the full Cursor Enterprise Admin and Analytics APIs, giving your agent the tools and knowledge to answer those questions directly. Works with Cursor, Claude Code, and any MCP-compatible client.
 
 > **Part of the [cursor-usage-tracker](https://github.com/ofershap/cursor-usage-tracker) ecosystem.** This plugin handles quick questions in the IDE. The tracker is the full open-source dashboard with charts, three-layer anomaly detection, Slack/email alerts, and incident lifecycle tracking. Use them together or separately.
 
@@ -42,7 +42,7 @@ This plugin gives your agent the tools and knowledge to answer those questions u
 
 | Component | What it does |
 |-----------|-------------|
-| **MCP Server** | 15 tools wrapping the full Cursor Admin + Analytics API |
+| **MCP Server** | 15 tools wrapping the full Cursor Enterprise Admin + Analytics API |
 | **Skills** | Data interpretation guide + cost optimization framework |
 | **Rules** | Always-on cost-awareness guidance for model selection |
 | **Commands** | Quick-access: `/usage-report`, `/spend-check`, `/model-audit` |
@@ -144,7 +144,7 @@ The API key gives read access to your team's usage data. The only write operatio
 > You: "/model-audit"
 > Agent: *calls get_model_usage + get_spending + get_agent_edits* → "62% of your team's messages use Sonnet (good). However, 5 users account for 78% of all Opus usage. Their acceptance rate on Opus is 44% vs 51% on Sonnet, suggesting Opus isn't providing measurably better results for most of their tasks..."
 
-## For Deeper Analysis
+## Full Cursor Enterprise Cost Monitoring Dashboard
 
 This plugin answers quick questions in the IDE. For teams that need:
 
@@ -154,7 +154,7 @@ This plugin answers quick questions in the IDE. For teams that need:
 - **Incident tracking** with MTTD/MTTI/MTTR lifecycle
 - **Web dashboard** with charts and visualizations
 
-See **[cursor-usage-tracker](https://github.com/ofershap/cursor-usage-tracker)** — the open-source dashboard this plugin is part of.
+See **[cursor-usage-tracker](https://github.com/ofershap/cursor-usage-tracker)**, the open-source Cursor Enterprise dashboard this plugin is part of.
 
 ## Development
 
