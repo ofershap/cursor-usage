@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/ofershap/cursor-usage/actions/workflows/ci.yml"><img src="https://github.com/ofershap/cursor-usage/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-strict-blue" alt="TypeScript" /></a>
   <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-compatible-green" alt="MCP" /></a>
@@ -40,13 +41,13 @@ This MCP server plugin wraps the full Cursor Enterprise Admin and Analytics APIs
 
 ## What's Included
 
-| Component | What it does |
-|-----------|-------------|
+| Component      | What it does                                                       |
+| -------------- | ------------------------------------------------------------------ |
 | **MCP Server** | 15 tools wrapping the full Cursor Enterprise Admin + Analytics API |
-| **Skills** | Data interpretation guide + cost optimization framework |
-| **Rules** | Always-on cost-awareness guidance for model selection |
-| **Commands** | Quick-access: `/usage-report`, `/spend-check`, `/model-audit` |
-| **Agent** | Specialized usage analyst persona |
+| **Skills**     | Data interpretation guide + cost optimization framework            |
+| **Rules**      | Always-on cost-awareness guidance for model selection              |
+| **Commands**   | Quick-access: `/usage-report`, `/spend-check`, `/model-audit`      |
+| **Agent**      | Specialized usage analyst persona                                  |
 
 ## Install
 
@@ -57,6 +58,7 @@ This MCP server plugin wraps the full Cursor Enterprise Admin and Analytics APIs
 ```
 
 Then set your API key in Cursor settings:
+
 - Open Settings → MCP
 - Find `cursor-usage` and set `CURSOR_API_KEY` to your Cursor Enterprise Admin API key
 
@@ -100,49 +102,52 @@ The API key gives read access to your team's usage data. The only write operatio
 
 ### Admin API
 
-| Tool | Description |
-|------|-------------|
-| `get_team_members` | List all team members with roles and status |
-| `get_spending` | Current billing cycle spend per member |
-| `get_daily_usage` | Daily usage data: lines, requests, models, modes |
-| `get_billing_groups` | Billing groups with member lists and spend |
-| `get_usage_events` | Per-request events with model, tokens, and costs |
-| `set_spend_limit` | Set a hard spending limit for a user |
+| Tool                 | Description                                      |
+| -------------------- | ------------------------------------------------ |
+| `get_team_members`   | List all team members with roles and status      |
+| `get_spending`       | Current billing cycle spend per member           |
+| `get_daily_usage`    | Daily usage data: lines, requests, models, modes |
+| `get_billing_groups` | Billing groups with member lists and spend       |
+| `get_usage_events`   | Per-request events with model, tokens, and costs |
+| `set_spend_limit`    | Set a hard spending limit for a user             |
 
 ### Analytics API
 
-| Tool | Description |
-|------|-------------|
-| `get_dau` | Daily active users (includes CLI, cloud agent, Bugbot) |
-| `get_model_usage` | Model usage breakdown per day |
-| `get_agent_edits` | Agent edit acceptance/rejection rates |
-| `get_tabs` | Tab autocomplete effectiveness |
-| `get_mcp_usage` | MCP tool adoption |
-| `get_file_extensions` | Top file types being edited with AI |
-| `get_client_versions` | Cursor version distribution |
-| `get_commands` | Command usage analytics |
-| `get_plans` | Plan mode adoption |
+| Tool                  | Description                                            |
+| --------------------- | ------------------------------------------------------ |
+| `get_dau`             | Daily active users (includes CLI, cloud agent, Bugbot) |
+| `get_model_usage`     | Model usage breakdown per day                          |
+| `get_agent_edits`     | Agent edit acceptance/rejection rates                  |
+| `get_tabs`            | Tab autocomplete effectiveness                         |
+| `get_mcp_usage`       | MCP tool adoption                                      |
+| `get_file_extensions` | Top file types being edited with AI                    |
+| `get_client_versions` | Cursor version distribution                            |
+| `get_commands`        | Command usage analytics                                |
+| `get_plans`           | Plan mode adoption                                     |
 
 ### Composite Tools
 
-| Tool | Description |
-|------|-------------|
-| `get_team_overview` | One-call summary: members, spend, DAU, top models |
-| `get_user_deep_dive` | Deep dive into a specific user's usage patterns |
+| Tool                 | Description                                       |
+| -------------------- | ------------------------------------------------- |
+| `get_team_overview`  | One-call summary: members, spend, DAU, top models |
+| `get_user_deep_dive` | Deep dive into a specific user's usage patterns   |
 
 ## Example Conversations
 
 **Quick spend check:**
+
 > You: "How much has my team spent this billing cycle?"
-> Agent: *calls get_team_overview* → "Your team of 47 active members has spent $3,842 this cycle. Top spender is Alice at $412, followed by Bob at $287..."
+> Agent: _calls get_team_overview_ → "Your team of 47 active members has spent $3,842 this cycle. Top spender is Alice at $412, followed by Bob at $287..."
 
 **User investigation:**
+
 > You: "Why is Bob's spend so high?"
-> Agent: *calls get_user_deep_dive* → "Bob has made 847 requests this week, 73% using claude-opus-4.5. His daily average is $41 vs the team median of $12. Switching his chat requests to Sonnet would save approximately $180/month..."
+> Agent: _calls get_user_deep_dive_ → "Bob has made 847 requests this week, 73% using claude-opus-4.5. His daily average is $41 vs the team median of $12. Switching his chat requests to Sonnet would save approximately $180/month..."
 
 **Model audit:**
+
 > You: "/model-audit"
-> Agent: *calls get_model_usage + get_spending + get_agent_edits* → "62% of your team's messages use Sonnet (good). However, 5 users account for 78% of all Opus usage. Their acceptance rate on Opus is 44% vs 51% on Sonnet, suggesting Opus isn't providing measurably better results for most of their tasks..."
+> Agent: _calls get_model_usage + get_spending + get_agent_edits_ → "62% of your team's messages use Sonnet (good). However, 5 users account for 78% of all Opus usage. Their acceptance rate on Opus is 44% vs 51% on Sonnet, suggesting Opus isn't providing measurably better results for most of their tasks..."
 
 ## Full Cursor Enterprise Cost Monitoring Dashboard
 

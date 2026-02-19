@@ -15,26 +15,31 @@ Generate a team usage report by following these steps:
 Present the report in this structure:
 
 **Team Summary**
+
 - Total members, active members, DAU trend
 - Total spend this cycle, average per member
 - Billing cycle dates
 
 **Spending Breakdown**
+
 - Top 10 spenders with amounts
 - Spend distribution (median, p75, p90, max)
 - Anyone exceeding 3x the median (flag as potential concern)
 
 **Model Adoption**
+
 - Top 5 models by message volume
 - Premium vs standard model split
 - Any model concentration risks
 
 **AI Effectiveness**
+
 - Agent edit acceptance rate
 - Tab completion acceptance rate
 - Lines of code accepted vs suggested
 
 **Recommendations**
+
 - Cost optimization opportunities (reference the cursor-cost-optimization skill)
 - Users who might benefit from model guidance
 - Any anomalies worth investigating

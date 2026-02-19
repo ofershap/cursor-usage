@@ -7,37 +7,43 @@ Two separate API keys may be required: Admin API key and Analytics API key (gene
 
 ## Rate Limits (per team, per minute)
 
-| API | Endpoint Type | Limit |
-|-----|---------------|-------|
-| Admin API | Most endpoints | 20 req/min |
-| Admin API | `/teams/user-spend-limit` | 250 req/min |
+| API           | Endpoint Type                    | Limit       |
+| ------------- | -------------------------------- | ----------- |
+| Admin API     | Most endpoints                   | 20 req/min  |
+| Admin API     | `/teams/user-spend-limit`        | 250 req/min |
 | Analytics API | Team-level (`/analytics/team/*`) | 100 req/min |
-| Analytics API | By-user (`/analytics/by-user/*`) | 50 req/min |
+| Analytics API | By-user (`/analytics/by-user/*`) | 50 req/min  |
 
 304 responses from ETag caching do NOT count against rate limits.
 
 ## Admin API Endpoints
 
 ### GET /teams/members
+
 Returns `{ teamMembers: [{ name, email, id, role, isRemoved }] }`
 
 ### POST /teams/daily-usage-data
+
 Body: `{ page, pageSize, startDate?: number (ms), endDate?: number (ms) }`
 Returns paginated daily usage per user. Poll at most once per hour (data aggregated hourly).
 
 ### POST /teams/spend
+
 Body: `{ page, pageSize }`
 Returns `{ teamMemberSpend: [...], subscriptionCycleStart: number, totalPages, totalMembers, limitedUsersCount, maxUserSpendCents }`
 
 ### POST /teams/filtered-usage-events
+
 Body: `{ email?, startDate?, endDate?, page, pageSize }`
 Returns per-request events with model, tokens, cost. Max 30 days per request. Poll at most once per hour.
 
 ### POST /teams/user-spend-limit
+
 Body: `{ email, hardLimitDollars }`
 Sets a hard spending limit for a user. Higher rate limit (250/min).
 
 ### GET /teams/groups
+
 Returns billing groups with member lists, spend, and daily spend breakdown.
 
 ## Analytics API Endpoints
@@ -46,6 +52,7 @@ All use `startDate`/`endDate` query params. Formats: `YYYY-MM-DD`, `7d`, `30d`, 
 Optional `users` param: comma-separated emails.
 
 ### Team-Level
+
 - `GET /analytics/team/dau` — daily active users (includes cli, cloud agent, bugbot)
 - `GET /analytics/team/models` — model usage with breakdown per day
 - `GET /analytics/team/agent-edits` — suggested/accepted/rejected diffs and lines
@@ -59,6 +66,7 @@ Optional `users` param: comma-separated emails.
 - `GET /analytics/team/ask-mode` — ask mode adoption
 
 ### By-User (paginated)
+
 Pattern: `GET /analytics/by-user/{metric}?page&pageSize` (max 500)
 Available: agent-edits, tabs, models, mcp, commands, plans, ask-mode, client-versions, top-file-extensions
 

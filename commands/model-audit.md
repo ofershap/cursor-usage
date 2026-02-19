@@ -14,17 +14,21 @@ Audit the team's model usage to find cost-saving opportunities:
 Present findings as:
 
 **Model Distribution**
+
 - Pie chart description: what % of messages go to each model
 - Premium vs standard vs budget model split
 
 **Cost Impact**
+
 - Estimated cost per model (messages × approximate cost per request)
 - Which models are driving the most spend
 
 **Optimization Opportunities**
+
 - Users heavily using premium models for tasks that standard models handle well
 - Specific recommendations: "User X could save ~$Y/month by switching from [model] to [model] for [task type]"
 
 **Action Items**
+
 - Ranked list of changes by estimated savings
 - Suggested spend limits if appropriate

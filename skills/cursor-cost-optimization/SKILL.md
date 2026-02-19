@@ -26,13 +26,13 @@ Call `get_team_overview` to get the baseline, then:
 
 The single highest-impact cost lever is model selection.
 
-| Task Type | Recommended Model Tier | Why |
-|-----------|----------------------|-----|
-| Code completion / tabs | Budget (Flash) | High volume, low complexity, latency-sensitive |
-| Inline edits (Cmd+K) | Standard (Sonnet, GPT-4o) | Good balance of quality and cost |
-| Chat conversations | Standard | Most questions don't need frontier models |
-| Agent mode (complex tasks) | Premium (Opus) only when needed | Reserve for genuinely complex multi-step work |
-| Code review | Standard | Pattern matching, not creative generation |
+| Task Type                  | Recommended Model Tier          | Why                                            |
+| -------------------------- | ------------------------------- | ---------------------------------------------- |
+| Code completion / tabs     | Budget (Flash)                  | High volume, low complexity, latency-sensitive |
+| Inline edits (Cmd+K)       | Standard (Sonnet, GPT-4o)       | Good balance of quality and cost               |
+| Chat conversations         | Standard                        | Most questions don't need frontier models      |
+| Agent mode (complex tasks) | Premium (Opus) only when needed | Reserve for genuinely complex multi-step work  |
+| Code review                | Standard                        | Pattern matching, not creative generation      |
 
 **Key insight**: Most developers default to the "best" model out of habit, not necessity. 80%+ of requests can be handled by standard-tier models with no noticeable quality difference.
 
@@ -57,11 +57,11 @@ Use `set_spend_limit` to set guardrails:
 These are rough benchmarks based on typical enterprise teams:
 
 | Team Size | Monthly Spend (healthy) | Monthly Spend (high) | Monthly Spend (alarm) |
-|-----------|------------------------|---------------------|----------------------|
-| 10 devs | $200-500 | $500-1,500 | >$2,000 |
-| 50 devs | $1,000-3,000 | $3,000-8,000 | >$10,000 |
-| 100 devs | $2,000-6,000 | $6,000-15,000 | >$20,000 |
-| 500 devs | $10,000-30,000 | $30,000-75,000 | >$100,000 |
+| --------- | ----------------------- | -------------------- | --------------------- |
+| 10 devs   | $200-500                | $500-1,500           | >$2,000               |
+| 50 devs   | $1,000-3,000            | $3,000-8,000         | >$10,000              |
+| 100 devs  | $2,000-6,000            | $6,000-15,000        | >$20,000              |
+| 500 devs  | $10,000-30,000          | $30,000-75,000       | >$100,000             |
 
 These assume a mix of standard and premium model usage. Teams exclusively using premium models will be 3-5x higher.
 
@@ -77,6 +77,7 @@ When presenting cost optimization findings:
 ## For Deeper Analysis
 
 This skill covers quick, data-driven cost optimization. For ongoing monitoring with:
+
 - Automated anomaly detection (statistical outlier detection)
 - Slack/email alerts when spend spikes
 - Historical trend analysis over months

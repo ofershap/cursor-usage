@@ -24,9 +24,7 @@ describe("CursorAPI", () => {
 
   describe("authentication", () => {
     it("sends Basic auth header with base64-encoded key", async () => {
-      mockFetch.mockResolvedValueOnce(
-        jsonResponse({ teamMembers: [] }),
-      );
+      mockFetch.mockResolvedValueOnce(jsonResponse({ teamMembers: [] }));
 
       await api.getTeamMembers();
 
@@ -39,12 +37,16 @@ describe("CursorAPI", () => {
   describe("getTeamMembers", () => {
     it("returns team members array", async () => {
       const members = [
-        { name: "Alice", email: "alice@co.com", id: "1", role: "admin", isRemoved: false },
+        {
+          name: "Alice",
+          email: "alice@co.com",
+          id: "1",
+          role: "admin",
+          isRemoved: false,
+        },
         { name: "Bob", email: "bob@co.com", id: "2", role: "member", isRemoved: false },
       ];
-      mockFetch.mockResolvedValueOnce(
-        jsonResponse({ teamMembers: members }),
-      );
+      mockFetch.mockResolvedValueOnce(jsonResponse({ teamMembers: members }));
 
       const result = await api.getTeamMembers();
       expect(result).toEqual(members);
@@ -183,9 +185,7 @@ describe("CursorAPI", () => {
 
   describe("analytics endpoints", () => {
     it("builds query params correctly", async () => {
-      mockFetch.mockResolvedValueOnce(
-        jsonResponse({ data: [], params: {} }),
-      );
+      mockFetch.mockResolvedValueOnce(jsonResponse({ data: [], params: {} }));
 
       await api.getDAU({
         startDate: "2026-02-01",
@@ -196,15 +196,11 @@ describe("CursorAPI", () => {
       const [url] = mockFetch.mock.calls[0];
       expect(url).toContain("startDate=2026-02-01");
       expect(url).toContain("endDate=2026-02-15");
-      expect(url).toContain(
-        "users=" + encodeURIComponent("alice@co.com,bob@co.com"),
-      );
+      expect(url).toContain("users=" + encodeURIComponent("alice@co.com,bob@co.com"));
     });
 
     it("uses defaults when no options provided", async () => {
-      mockFetch.mockResolvedValueOnce(
-        jsonResponse({ data: [], params: {} }),
-      );
+      mockFetch.mockResolvedValueOnce(jsonResponse({ data: [], params: {} }));
 
       await api.getModelUsage();
 
@@ -225,9 +221,7 @@ describe("CursorAPI", () => {
           headers: new Headers({ "Retry-After": "1" }),
           text: () => Promise.resolve("Rate limited"),
         })
-        .mockResolvedValueOnce(
-          jsonResponse({ teamMembers: [] }),
-        );
+        .mockResolvedValueOnce(jsonResponse({ teamMembers: [] }));
 
       const promise = api.getTeamMembers();
       await vi.advanceTimersByTimeAsync(1000);
@@ -249,9 +243,7 @@ describe("CursorAPI", () => {
         text: () => Promise.resolve("Forbidden"),
       });
 
-      await expect(api.getTeamMembers()).rejects.toThrow(
-        "Cursor API 403: Forbidden",
-      );
+      await expect(api.getTeamMembers()).rejects.toThrow("Cursor API 403: Forbidden");
     });
   });
 });

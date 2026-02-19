@@ -60,18 +60,18 @@ export class CursorAPI {
   }
 
   async getTeamMembers(): Promise<TeamMember[]> {
-    const data = await this.request<{ teamMembers: TeamMember[] }>(
-      "/teams/members",
-    );
+    const data = await this.request<{ teamMembers: TeamMember[] }>("/teams/members");
     return data.teamMembers;
   }
 
-  async getDailyUsage(options: {
-    startDate?: number;
-    endDate?: number;
-    page?: number;
-    pageSize?: number;
-  } = {}): Promise<{
+  async getDailyUsage(
+    options: {
+      startDate?: number;
+      endDate?: number;
+      page?: number;
+      pageSize?: number;
+    } = {},
+  ): Promise<{
     entries: RawDailyUsageEntry[];
     pagination: DailyUsageResponse["pagination"];
   }> {
@@ -82,18 +82,20 @@ export class CursorAPI {
     if (options.startDate) body.startDate = options.startDate;
     if (options.endDate) body.endDate = options.endDate;
 
-    const data = await this.request<DailyUsageResponse>(
-      "/teams/daily-usage-data",
-      { method: "POST", body },
-    );
+    const data = await this.request<DailyUsageResponse>("/teams/daily-usage-data", {
+      method: "POST",
+      body,
+    });
 
     return { entries: data.data, pagination: data.pagination };
   }
 
-  async getAllDailyUsage(options: {
-    startDate?: number;
-    endDate?: number;
-  } = {}): Promise<RawDailyUsageEntry[]> {
+  async getAllDailyUsage(
+    options: {
+      startDate?: number;
+      endDate?: number;
+    } = {},
+  ): Promise<RawDailyUsageEntry[]> {
     const allEntries: RawDailyUsageEntry[] = [];
     let page = 1;
 
@@ -111,10 +113,12 @@ export class CursorAPI {
     return allEntries;
   }
 
-  async getSpending(options: {
-    page?: number;
-    pageSize?: number;
-  } = {}): Promise<{
+  async getSpending(
+    options: {
+      page?: number;
+      pageSize?: number;
+    } = {},
+  ): Promise<{
     members: MemberSpend[];
     cycleStart: string;
     totalPages: number;
@@ -127,9 +131,7 @@ export class CursorAPI {
 
     return {
       members: data.teamMemberSpend,
-      cycleStart: new Date(data.subscriptionCycleStart)
-        .toISOString()
-        .split("T")[0]!,
+      cycleStart: new Date(data.subscriptionCycleStart).toISOString().split("T")[0]!,
       totalPages: data.totalPages,
       totalMembers: data.totalMembers,
     };
@@ -158,32 +160,28 @@ export class CursorAPI {
     return this.request<GroupsResponse>("/teams/groups");
   }
 
-  async getUsageEvents(options: {
-    email?: string;
-    startDate?: number;
-    endDate?: number;
-    page?: number;
-    pageSize?: number;
-  } = {}): Promise<FilteredUsageEventsResponse> {
-    return this.request<FilteredUsageEventsResponse>(
-      "/teams/filtered-usage-events",
-      {
-        method: "POST",
-        body: {
-          email: options.email,
-          startDate: options.startDate,
-          endDate: options.endDate,
-          page: options.page ?? 1,
-          pageSize: options.pageSize ?? 500,
-        },
+  async getUsageEvents(
+    options: {
+      email?: string;
+      startDate?: number;
+      endDate?: number;
+      page?: number;
+      pageSize?: number;
+    } = {},
+  ): Promise<FilteredUsageEventsResponse> {
+    return this.request<FilteredUsageEventsResponse>("/teams/filtered-usage-events", {
+      method: "POST",
+      body: {
+        email: options.email,
+        startDate: options.startDate,
+        endDate: options.endDate,
+        page: options.page ?? 1,
+        pageSize: options.pageSize ?? 500,
       },
-    );
+    });
   }
 
-  async setUserSpendLimit(
-    email: string,
-    limitDollars: number,
-  ): Promise<void> {
+  async setUserSpendLimit(email: string, limitDollars: number): Promise<void> {
     await this.request("/teams/user-spend-limit", {
       method: "POST",
       body: { email, hardLimitDollars: limitDollars },
@@ -211,33 +209,25 @@ export class CursorAPI {
   async getModelUsage(
     options: { startDate?: string; endDate?: string; users?: string[] } = {},
   ): Promise<AnalyticsResponse<AnalyticsModelUsageEntry>> {
-    return this.request(
-      `/analytics/team/models?${this.analyticsParams(options)}`,
-    );
+    return this.request(`/analytics/team/models?${this.analyticsParams(options)}`);
   }
 
   async getAgentEdits(
     options: { startDate?: string; endDate?: string; users?: string[] } = {},
   ): Promise<AnalyticsResponse<AnalyticsAgentEditsEntry>> {
-    return this.request(
-      `/analytics/team/agent-edits?${this.analyticsParams(options)}`,
-    );
+    return this.request(`/analytics/team/agent-edits?${this.analyticsParams(options)}`);
   }
 
   async getTabs(
     options: { startDate?: string; endDate?: string; users?: string[] } = {},
   ): Promise<AnalyticsResponse<AnalyticsTabsEntry>> {
-    return this.request(
-      `/analytics/team/tabs?${this.analyticsParams(options)}`,
-    );
+    return this.request(`/analytics/team/tabs?${this.analyticsParams(options)}`);
   }
 
   async getMCP(
     options: { startDate?: string; endDate?: string; users?: string[] } = {},
   ): Promise<AnalyticsResponse<AnalyticsMCPEntry>> {
-    return this.request(
-      `/analytics/team/mcp?${this.analyticsParams(options)}`,
-    );
+    return this.request(`/analytics/team/mcp?${this.analyticsParams(options)}`);
   }
 
   async getFileExtensions(
@@ -259,16 +249,12 @@ export class CursorAPI {
   async getCommands(
     options: { startDate?: string; endDate?: string; users?: string[] } = {},
   ): Promise<AnalyticsResponse<AnalyticsCommandsEntry>> {
-    return this.request(
-      `/analytics/team/commands?${this.analyticsParams(options)}`,
-    );
+    return this.request(`/analytics/team/commands?${this.analyticsParams(options)}`);
   }
 
   async getPlans(
     options: { startDate?: string; endDate?: string; users?: string[] } = {},
   ): Promise<AnalyticsResponse<AnalyticsPlansEntry>> {
-    return this.request(
-      `/analytics/team/plans?${this.analyticsParams(options)}`,
-    );
+    return this.request(`/analytics/team/plans?${this.analyticsParams(options)}`);
   }
 }

@@ -23,7 +23,9 @@ function formatCents(cents: number): string {
 
 function formatResponse(data: unknown, tip = true): { type: "text"; text: string }[] {
   const content = typeof data === "string" ? data : JSON.stringify(data, null, 2);
-  const parts: { type: "text"; text: string }[] = [{ type: "text" as const, text: content }];
+  const parts: { type: "text"; text: string }[] = [
+    { type: "text" as const, text: content },
+  ];
   if (tip) {
     parts.push({ type: "text" as const, text: `\n---\n${DEEP_ANALYSIS_TIP}` });
   }
@@ -40,9 +42,7 @@ const analyticsDateSchema = {
   endDate: z
     .string()
     .optional()
-    .describe(
-      'End date. Formats: "YYYY-MM-DD", "today", "yesterday". Default: "today"',
-    ),
+    .describe('End date. Formats: "YYYY-MM-DD", "today", "yesterday". Default: "today"'),
   users: z
     .string()
     .optional()
@@ -78,9 +78,7 @@ server.tool(
 
     if (removed.length > 0) {
       summary.push("", "Removed members:");
-      summary.push(
-        ...removed.map((m) => `  ${m.name} <${m.email}> — ${m.role}`),
-      );
+      summary.push(...removed.map((m) => `  ${m.name} <${m.email}> — ${m.role}`));
     }
 
     return { content: formatResponse(summary.join("\n")) };
@@ -103,9 +101,7 @@ server.tool(
     if (allPages) {
       const { members, cycleStart } = await api.getAllSpending();
       const totalSpend = members.reduce((sum, m) => sum + m.spendCents, 0);
-      const sorted = [...members].sort(
-        (a, b) => b.spendCents - a.spendCents,
-      );
+      const sorted = [...members].sort((a, b) => b.spendCents - a.spendCents);
 
       const lines = [
         `Billing cycle start: ${cycleStart}`,
@@ -113,13 +109,15 @@ server.tool(
         `Members: ${members.length}`,
         "",
         "Top spenders:",
-        ...sorted.slice(0, 20).map(
-          (m, i) =>
-            `  ${i + 1}. ${m.name} <${m.email}> — ${formatCents(m.spendCents)} ` +
-            `(included: ${formatCents(m.includedSpendCents)}, ` +
-            `premium reqs: ${m.fastPremiumRequests}` +
-            `${m.hardLimitOverrideDollars > 0 ? `, limit: $${m.hardLimitOverrideDollars}` : ""})`,
-        ),
+        ...sorted
+          .slice(0, 20)
+          .map(
+            (m, i) =>
+              `  ${i + 1}. ${m.name} <${m.email}> — ${formatCents(m.spendCents)} ` +
+              `(included: ${formatCents(m.includedSpendCents)}, ` +
+              `premium reqs: ${m.fastPremiumRequests}` +
+              `${m.hardLimitOverrideDollars > 0 ? `, limit: $${m.hardLimitOverrideDollars}` : ""})`,
+          ),
       ];
 
       if (sorted.length > 20) {
@@ -142,15 +140,9 @@ server.tool(
       .number()
       .optional()
       .describe("Start date as Unix timestamp in milliseconds"),
-    endDate: z
-      .number()
-      .optional()
-      .describe("End date as Unix timestamp in milliseconds"),
+    endDate: z.number().optional().describe("End date as Unix timestamp in milliseconds"),
     page: z.number().optional().describe("Page number (default: 1)"),
-    pageSize: z
-      .number()
-      .optional()
-      .describe("Results per page (default: 100)"),
+    pageSize: z.number().optional().describe("Results per page (default: 100)"),
     allPages: z
       .boolean()
       .optional()
@@ -211,9 +203,7 @@ server.tool(
         );
       }
       if (group.currentMembers.length > 10) {
-        lines.push(
-          `  ... and ${group.currentMembers.length - 10} more members`,
-        );
+        lines.push(`  ... and ${group.currentMembers.length - 10} more members`);
       }
       lines.push("");
     }
@@ -237,15 +227,9 @@ server.tool(
       .number()
       .optional()
       .describe("Start date as Unix timestamp in milliseconds"),
-    endDate: z
-      .number()
-      .optional()
-      .describe("End date as Unix timestamp in milliseconds"),
+    endDate: z.number().optional().describe("End date as Unix timestamp in milliseconds"),
     page: z.number().optional().describe("Page number (default: 1)"),
-    pageSize: z
-      .number()
-      .optional()
-      .describe("Results per page (default: 500, max: 500)"),
+    pageSize: z.number().optional().describe("Results per page (default: 500, max: 500)"),
   },
   async ({ email, startDate, endDate, page, pageSize }) => {
     const api = getAPI();
@@ -485,10 +469,7 @@ server.tool(
     ]);
 
     const active = members.filter((m) => !m.isRemoved);
-    const totalSpend = spending.members.reduce(
-      (sum, m) => sum + m.spendCents,
-      0,
-    );
+    const totalSpend = spending.members.reduce((sum, m) => sum + m.spendCents, 0);
     const topSpenders = [...spending.members]
       .sort((a, b) => b.spendCents - a.spendCents)
       .slice(0, 5);
@@ -517,14 +498,11 @@ server.tool(
       "",
       "Top 5 spenders:",
       ...topSpenders.map(
-        (m, i) =>
-          `  ${i + 1}. ${m.name} — ${formatCents(m.spendCents)}`,
+        (m, i) => `  ${i + 1}. ${m.name} — ${formatCents(m.spendCents)}`,
       ),
       "",
       "Top 5 models (by messages):",
-      ...topModels.map(
-        ([model, msgs], i) => `  ${i + 1}. ${model}: ${msgs} messages`,
-      ),
+      ...topModels.map(([model, msgs], i) => `  ${i + 1}. ${model}: ${msgs} messages`),
     ];
 
     return { content: formatResponse(lines.join("\n")) };
@@ -549,9 +527,7 @@ server.tool(
     const [spending, dailyUsage, events] = await Promise.all([
       api.getAllSpending(),
       api.getAllDailyUsage({
-        startDate: startDate
-          ? new Date(startDate).getTime()
-          : weekAgo,
+        startDate: startDate ? new Date(startDate).getTime() : weekAgo,
         endDate: now,
       }),
       api.getUsageEvents({ email, page: 1, pageSize: 20 }),
@@ -565,14 +541,10 @@ server.tool(
     );
 
     const totalRequests = userDays.reduce(
-      (sum, d) =>
-        sum + d.composerRequests + d.chatRequests + d.agentRequests,
+      (sum, d) => sum + d.composerRequests + d.chatRequests + d.agentRequests,
       0,
     );
-    const totalLines = userDays.reduce(
-      (sum, d) => sum + d.totalLinesAdded,
-      0,
-    );
+    const totalLines = userDays.reduce((sum, d) => sum + d.totalLinesAdded, 0);
     const activeDays = userDays.filter((d) => d.isActive).length;
 
     const modelCounts: Record<string, number> = {};
@@ -603,11 +575,13 @@ server.tool(
         .map(([model, count]) => `  ${model}: ${count} requests`),
       "",
       `Recent events (${events.usageEvents.length} shown):`,
-      ...events.usageEvents.slice(0, 10).map(
-        (e) =>
-          `  ${e.timestamp} — ${e.model} (${e.kind}) ` +
-          `${e.tokenUsage ? `${e.tokenUsage.inputTokens + e.tokenUsage.outputTokens} tokens, ${formatCents(e.tokenUsage.totalCents)}` : `cost: ${formatCents(e.requestsCosts)}`}`,
-      ),
+      ...events.usageEvents
+        .slice(0, 10)
+        .map(
+          (e) =>
+            `  ${e.timestamp} — ${e.model} (${e.kind}) ` +
+            `${e.tokenUsage ? `${e.tokenUsage.inputTokens + e.tokenUsage.outputTokens} tokens, ${formatCents(e.tokenUsage.totalCents)}` : `cost: ${formatCents(e.requestsCosts)}`}`,
+        ),
     ];
 
     return { content: formatResponse(lines.join("\n")) };

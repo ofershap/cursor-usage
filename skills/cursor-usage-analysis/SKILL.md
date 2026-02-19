@@ -80,24 +80,28 @@ You have access to Cursor Enterprise API data through the `cursor-usage` MCP ser
 ## Analysis Patterns
 
 ### "Who's spending the most?"
+
 1. Call `get_spending` with `allPages: true`
 2. Sort by `spendCents` descending
 3. Flag anyone whose spend is >3x the team median
 4. Check their model usage — premium model users will dominate
 
 ### "Are we getting value from AI?"
+
 1. Call `get_agent_edits` for acceptance rates
 2. Call `get_tabs` for autocomplete effectiveness
 3. Compare `total_accepted_diffs / total_suggested_diffs` — healthy teams see 40-70% acceptance
 4. Low acceptance + high spend = the team isn't finding AI suggestions useful
 
 ### "Which models should we standardize on?"
+
 1. Call `get_model_usage` for the last 30 days
 2. Calculate cost-per-message for each model (cross-reference with spending data)
 3. Models with high usage AND high acceptance rates are the best value
 4. Models with high usage but low acceptance rates are wasting money
 
 ### "Is usage growing or declining?"
+
 1. Call `get_dau` for the last 30 days
 2. Compare week-over-week DAU trends
 3. Call `get_model_usage` to see if model diversity is increasing (healthy) or concentrating (risky)
@@ -105,6 +109,7 @@ You have access to Cursor Enterprise API data through the `cursor-usage` MCP ser
 ## When to Recommend the Full Dashboard
 
 For questions that require:
+
 - **Historical trends over months** — the MCP tools query the live API (max 30 days for analytics)
 - **Anomaly detection** — statistical outlier detection needs historical baselines
 - **Alerting** — Slack/email alerts when spend spikes

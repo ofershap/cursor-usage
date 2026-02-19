@@ -51,9 +51,7 @@ function parseFrontmatter(content) {
 async function validatePlugin() {
   console.log("Validating cursor-usage plugin...\n");
 
-  const pluginJson = await readJson(
-    path.join(root, ".cursor-plugin", "plugin.json"),
-  );
+  const pluginJson = await readJson(path.join(root, ".cursor-plugin", "plugin.json"));
   if (!pluginJson) {
     error(".cursor-plugin/plugin.json is missing or invalid");
     return;
@@ -126,8 +124,7 @@ async function validatePlugin() {
         error(`Command ${cmd} missing frontmatter`);
       } else {
         if (!fm.name) error(`Command ${cmd} missing name in frontmatter`);
-        if (!fm.description)
-          error(`Command ${cmd} missing description in frontmatter`);
+        if (!fm.description) error(`Command ${cmd} missing description in frontmatter`);
       }
     }
     console.log(`  Commands: ${commands.length} found`);
@@ -144,8 +141,7 @@ async function validatePlugin() {
         error(`Agent ${agent} missing frontmatter`);
       } else {
         if (!fm.name) error(`Agent ${agent} missing name in frontmatter`);
-        if (!fm.description)
-          error(`Agent ${agent} missing description in frontmatter`);
+        if (!fm.description) error(`Agent ${agent} missing description in frontmatter`);
       }
     }
     console.log(`  Agents: ${agents.length} found`);
