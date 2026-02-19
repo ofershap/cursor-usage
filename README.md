@@ -12,6 +12,8 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-strict-blue" alt="TypeScript" /></a>
   <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-compatible-green" alt="MCP" /></a>
+  <a href="https://www.npmjs.com/package/cursor-usage-mcp"><img src="https://img.shields.io/npm/v/cursor-usage-mcp" alt="npm" /></a>
+  <a href="https://github.com/ofershap/cursor-usage-tracker"><img src="https://img.shields.io/badge/dashboard-cursor--usage--tracker-blue" alt="Dashboard" /></a>
 </p>
 
 ---
@@ -33,6 +35,8 @@ You manage a Cursor Enterprise team. You want to know who's spending what, which
 > "Give me a full usage report for the current billing cycle."
 
 This plugin gives your agent the tools and knowledge to answer those questions using the Cursor Enterprise API directly.
+
+> **Part of the [cursor-usage-tracker](https://github.com/ofershap/cursor-usage-tracker) ecosystem.** This plugin handles quick questions in the IDE. The tracker is the full open-source dashboard with charts, three-layer anomaly detection, Slack/email alerts, and incident lifecycle tracking. Use them together or separately.
 
 ## What's Included
 
