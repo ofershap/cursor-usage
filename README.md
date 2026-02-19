@@ -16,6 +16,12 @@
 
 ---
 
+![Demo](assets/demo.gif)
+
+<sub>Demo animation created with <a href="https://github.com/ofershap/remotion-readme-kit">remotion-readme-kit</a></sub>
+
+---
+
 ## What This Does
 
 You manage a Cursor Enterprise team. You want to know who's spending what, which models are being used, and whether you're getting value from AI. Instead of logging into a dashboard, you ask your AI agent:
