@@ -71,7 +71,7 @@ Add to your MCP configuration:
   "mcpServers": {
     "cursor-usage": {
       "command": "npx",
-      "args": ["-y", "cursor-usage"],
+      "args": ["-y", "cursor-usage-mcp"],
       "env": {
         "CURSOR_API_KEY": "your-api-key-here"
       }

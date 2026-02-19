@@ -1,5 +1,5 @@
 {
-  "name": "cursor-usage",
+  "name": "cursor-usage-mcp",
   "version": "0.1.0",
   "description": "MCP server and Cursor plugin for querying Cursor Enterprise usage, spending, and analytics",
   "type": "module",
