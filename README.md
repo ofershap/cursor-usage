@@ -23,6 +23,10 @@
 
 <sub>Demo animation created with <a href="https://github.com/ofershap/remotion-readme-kit">remotion-readme-kit</a></sub>
 
+<a href="https://glama.ai/mcp/servers/ofershap/cursor-usage">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/ofershap/cursor-usage/badge" alt="cursor-usage MCP server" />
+</a>
+
 ---
 
 ## What This Does
