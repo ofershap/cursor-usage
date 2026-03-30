@@ -199,3 +199,8 @@ npm run validate
 ## License
 
 [MIT](LICENSE) © Ofer Shapira
+
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/ofershap-cursor-usage).
+
